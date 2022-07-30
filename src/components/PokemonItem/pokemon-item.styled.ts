@@ -30,7 +30,6 @@ export const PokemonActionArea = styled('button')(
 
 export const PokemonImageContainer = styled('div')(
 	() => css`
-		position: relative;
 		width: 100%;
 		padding-top: 100%;
 	`
