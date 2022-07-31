@@ -5,6 +5,7 @@ export const Home = styled('main')(
 		padding: 16px;
 		display: flex;
 		flex-direction: column;
+		overflow: auto;
 	`
 );
 
