@@ -1,52 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import * as styled from './home.styled';
 
 import PokemonItemComponent from '../../components/PokemonItem';
 
-import { getPokemonList } from '../../api/pokemon/get-pokemon-list';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	selectItemsAlreadyLoaded,
+	selectPokemonItems,
+	setPokemonsState,
+} from '../../store/reducers/pokemons';
 
-import { getPokemonId } from './utils/get-pokemon-id';
-import { getPokemonSpriteUrl } from './utils/get-pokemon-sprite-url';
+import { useLoadPokemonList } from './hooks/use-load-pokemon-list';
 
-type PokemonItem = {
-	id: number;
-	imageUrl: string;
-	name: string;
-};
+import { pokemonResultToPokemonItem } from './utils/pokemon-result-to-pokemon-item';
 
 export const MAX_POKEMON_TO_LOAD = 151;
 
 export const PATH = '/home';
 
 function Home() {
-	const [pokemonItems, setPokemonItems] = useState<PokemonItem[]>([]);
+	const dispatch = useDispatch();
+
+	const pokemonsAlreadyLoaded = useSelector(selectItemsAlreadyLoaded);
+
+	const pokemonItems = useSelector(selectPokemonItems);
+
+	const { loadData: loadPokemonList, data: pokemonItemsLoaded } = useLoadPokemonList();
 
 	useEffect(() => {
-		const loadPokemonList = async () => {
-			try {
-				const pokemonListResult = await getPokemonList({ query: { limit: MAX_POKEMON_TO_LOAD } });
+		if (!pokemonsAlreadyLoaded) {
+			loadPokemonList({ query: { limit: MAX_POKEMON_TO_LOAD } });
+		}
+	}, [loadPokemonList, pokemonsAlreadyLoaded]);
 
-				setPokemonItems(
-					pokemonListResult.results.map((pokemonResult) => {
-						const pokemonId = getPokemonId(
-							pokemonResult.url.slice(0, pokemonResult.url.length - 1)
-						);
-
-						return {
-							id: pokemonId,
-							imageUrl: getPokemonSpriteUrl(pokemonId),
-							name: pokemonResult.name,
-						};
-					})
-				);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
-		loadPokemonList();
-	}, []);
+	useEffect(() => {
+		if (pokemonItemsLoaded) {
+			dispatch(
+				setPokemonsState({
+					itemsAlreadyLoaded: true,
+					items: pokemonItemsLoaded.results.map(pokemonResultToPokemonItem),
+				})
+			);
+		}
+	}, [dispatch, pokemonItemsLoaded]);
 
 	const pokemonItemsToRender: JSX.Element[] = pokemonItems.map((pokemonItem) => (
 		<PokemonItemComponent
