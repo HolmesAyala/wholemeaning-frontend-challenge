@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import PokemonItemBase from '../../../../components/PokemonItem';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,11 +10,18 @@ import {
 	selectIsMaxPokemonItemsReached,
 } from '../../../../store/reducers/combat-pokemon';
 
+import {
+	PATH as POKEMON_DETAIL_PATH,
+	QUERY_PARAMS as POKEMON_DETAIL_QUERY_PARAMS,
+} from '../../../PokemonDetail';
+
 type PokemonItemWrapperProps = {
 	pokemonItem: PokemonItem;
 };
 
 function PokemonItemWrapper({ pokemonItem }: PokemonItemWrapperProps) {
+	const navigate = useNavigate();
+
 	const dispatch = useDispatch();
 
 	const isPokemonReadyForCombat = useSelector(selectIsPokemonReadyForCombat(pokemonItem.id));
@@ -21,6 +30,10 @@ function PokemonItemWrapper({ pokemonItem }: PokemonItemWrapperProps) {
 
 	const onAddPokemonItemToBattleReady = (pokemonItem: PokemonItem) => {
 		dispatch(addCombatPokemon(pokemonItem));
+	};
+
+	const onClickFromPokemonItem = () => {
+		navigate(`${POKEMON_DETAIL_PATH}?${POKEMON_DETAIL_QUERY_PARAMS.ID}=${pokemonItem.id}`);
 	};
 
 	return (
@@ -35,6 +48,7 @@ function PokemonItemWrapper({ pokemonItem }: PokemonItemWrapperProps) {
 			}
 			imageUrl={pokemonItem.imageUrl}
 			name={pokemonItem.name}
+			onClick={onClickFromPokemonItem}
 		/>
 	);
 }
