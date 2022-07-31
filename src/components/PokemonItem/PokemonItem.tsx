@@ -18,7 +18,7 @@ function PokemonItem({ itemAction, imageUrl, name, onClick }: PokemonItemProps) 
 		<styled.PokemonItem>
 			<styled.PokemonActionArea onClick={onClick}>
 				<styled.PokemonImageContainer>
-					<styled.PokemonImage src={imageUrl} />
+					<styled.PokemonImage src={imageUrl} loading='lazy' alt={name} />
 				</styled.PokemonImageContainer>
 
 				<styled.PokemonName>{name}</styled.PokemonName>
