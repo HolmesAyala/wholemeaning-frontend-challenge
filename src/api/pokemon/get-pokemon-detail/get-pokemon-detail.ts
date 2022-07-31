@@ -1,3 +1,5 @@
+import { environmentVars } from '../../../environment-vars';
+
 export type StatItem = {
 	base_stat: number;
 	stat: { name: string };
@@ -21,8 +23,10 @@ export type GetPokemonDetailData = {
 	stats: StatItem[];
 };
 
-export async function getPokemonDetail(pokemonUrl: string): Promise<GetPokemonDetailData> {
-	const response = await fetch(pokemonUrl);
+export async function getPokemonDetail(
+	pokemonId: GetPokemonDetailData['id']
+): Promise<GetPokemonDetailData> {
+	const response = await fetch(`${environmentVars.api.baseUrl}/pokemon/${pokemonId}`);
 
 	const body = await response.json();
 
