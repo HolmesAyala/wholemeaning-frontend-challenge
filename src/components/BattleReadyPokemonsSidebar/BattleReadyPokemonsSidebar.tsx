@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as styled from './battle-ready-pokemons-sidebar.styled';
 
@@ -6,11 +7,19 @@ import PokemonItemComponent from '../PokemonItem';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
+	CombatPokemonItem,
 	selectCombatPokemonItems,
 	removeItem as removePokemonItem,
 } from '../../store/reducers/combat-pokemon';
 
+import {
+	PATH as POKEMON_DETAIL_PATH,
+	QUERY_PARAMS as POKEMON_DETAIL_QUERY_PARAMS,
+} from '../../pages/PokemonDetail';
+
 function BattleReadyPokemonsSidebar() {
+	const navigate = useNavigate();
+
 	const dispatch = useDispatch();
 
 	const combatPokemonItems = useSelector(selectCombatPokemonItems);
@@ -23,6 +32,10 @@ function BattleReadyPokemonsSidebar() {
 		}
 	};
 
+	const onClickFromPokemonItem = (combatPokemonItem: CombatPokemonItem) => {
+		navigate(`${POKEMON_DETAIL_PATH}?${POKEMON_DETAIL_QUERY_PARAMS.ID}=${combatPokemonItem.id}`);
+	};
+
 	const pokemonItemsToRender: JSX.Element[] = combatPokemonItems.map((combatPokemonItem) => (
 		<PokemonItemComponent
 			key={combatPokemonItem.id}
@@ -33,6 +46,7 @@ function BattleReadyPokemonsSidebar() {
 			}
 			imageUrl={combatPokemonItem.imageUrl}
 			name={combatPokemonItem.name}
+			onClick={() => onClickFromPokemonItem(combatPokemonItem)}
 		/>
 	));
 
