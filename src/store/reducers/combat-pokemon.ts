@@ -38,4 +38,11 @@ export const combatPokemonReducer = combatPokemonSlice.reducer;
 
 export const selectCombatPokemonItems = (state: StoreState) => state.combatPokemon.items;
 
+export const selectIsPokemonReadyForCombat =
+	(pokemonId: CombatPokemonItem['id']) => (state: StoreState) =>
+		state.combatPokemon.items.some((item) => item.id === pokemonId);
+
+export const selectIsMaxPokemonItemsReached = (state: StoreState) =>
+	state.combatPokemon.items.length === state.combatPokemon.maxItems;
+
 export const { setCombatPokemonState, addItem, removeItem } = combatPokemonSlice.actions;

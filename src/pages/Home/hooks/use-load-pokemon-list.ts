@@ -6,7 +6,14 @@ import {
 	GetPokemonListData,
 } from '../../../api/pokemon/get-pokemon-list';
 
-export function useLoadPokemonList() {
+export type UseLoadPokemonListReturn = {
+	loadData: (props?: GetPokemonListProps) => Promise<GetPokemonListData | undefined>;
+	loading: boolean;
+	data: GetPokemonListData | null;
+	error: Error | null;
+};
+
+export function useLoadPokemonList(): UseLoadPokemonListReturn {
 	const [loading, setLoading] = useState(false);
 
 	const [data, setData] = useState<GetPokemonListData | null>(null);

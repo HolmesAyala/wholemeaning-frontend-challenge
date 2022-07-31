@@ -2,7 +2,7 @@ import { useEffect, useState, ChangeEvent } from 'react';
 
 import * as styled from './home.styled';
 
-import PokemonItemComponent from '../../components/PokemonItem';
+import PokemonItemWrapper from './components/PokemonItemWrapper';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -62,17 +62,13 @@ function Home() {
 	};
 
 	const pokemonItemsToRender: JSX.Element[] = pokemonItemsBySearch.map((pokemonItem) => (
-		<PokemonItemComponent
-			key={pokemonItem.id}
-			imageUrl={pokemonItem.imageUrl}
-			name={pokemonItem.name}
-		/>
+		<PokemonItemWrapper key={pokemonItem.id} pokemonItem={pokemonItem} />
 	));
 
 	return (
 		<styled.Home>
 			<styled.SearchField
-				placeholder='Buscar pokemon por nombre o número'
+				placeholder='Buscar pokémon por nombre o número'
 				onChange={onChangeFromSearchField}
 			/>
 
