@@ -1,8 +1,7 @@
-import { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent, useMemo } from 'react';
 
 import * as styled from './home.styled';
 
-import Alert from '../../components/feedback/Alert';
 import PokemonItemWrapper from './components/PokemonItemWrapper';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -38,6 +37,8 @@ function Home() {
 		data: pokemonItemsLoaded,
 	} = useLoadPokemonList();
 
+	const [search, setSearch] = useState('');
+
 	const [pokemonItemsBySearch, setPokemonItemsBySearch] = useState<PokemonItem[]>([]);
 
 	useEffect(() => {
@@ -64,6 +65,8 @@ function Home() {
 	const onChangeFromSearchField = (event: ChangeEvent<HTMLInputElement>) => {
 		const { value: search } = event.target;
 
+		setSearch(search);
+
 		setPokemonItemsBySearch(
 			pokemonItems.filter((pokemonItem) => pokemonItemMatchSearch(pokemonItem, search))
 		);
@@ -75,26 +78,40 @@ function Home() {
 		<styled.Alert severity='error'>Error al cargar las lista de Pokémon.</styled.Alert>
 	);
 
-	const pokemonItemsToRender: JSX.Element[] = pokemonItemsBySearch.map((pokemonItem) => (
-		<PokemonItemWrapper key={pokemonItem.id} pokemonItem={pokemonItem} />
-	));
+	const emptySearchMessage: JSX.Element = (
+		<styled.Alert>Ningún Pokémon coincide con el criterio de búsqueda.</styled.Alert>
+	);
+
+	const pokemonItemsToRender: JSX.Element[] = useMemo(
+		() =>
+			pokemonItemsBySearch.map((pokemonItem) => (
+				<PokemonItemWrapper key={pokemonItem.id} pokemonItem={pokemonItem} />
+			)),
+		[pokemonItemsBySearch]
+	);
+
+	const pokemonListToRender: JSX.Element | null =
+		pokemonItemsToRender.length > 0 ? (
+			<styled.PokemonList>{pokemonItemsToRender}</styled.PokemonList>
+		) : null;
 
 	return (
 		<styled.Home>
 			<styled.Logo src={pokedexLogo} alt='Pokédex' />
 
 			<styled.SearchField
+				value={search}
 				placeholder='Buscar pokémon por nombre o número'
 				onChange={onChangeFromSearchField}
 			/>
 
-			{!loadingPokemonList && !errorLoadingPokemonList && (
-				<styled.PokemonList>{pokemonItemsToRender}</styled.PokemonList>
-			)}
+			{!loadingPokemonList && !errorLoadingPokemonList && pokemonListToRender}
 
 			{loadingPokemonList && loadingMessage}
 
 			{errorLoadingPokemonList && errorMessage}
+
+			{search.trim() && pokemonItemsToRender.length === 0 && emptySearchMessage}
 		</styled.Home>
 	);
 }
