@@ -14,6 +14,7 @@ export const Header = styled(HeaderBase)(
 		top: 0;
 		background-color: white;
 		padding: 32px;
+		border-bottom: 1px solid silver;
 	`
 );
 
