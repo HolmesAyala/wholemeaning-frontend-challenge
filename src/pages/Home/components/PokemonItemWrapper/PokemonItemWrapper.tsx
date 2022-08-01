@@ -47,6 +47,7 @@ function PokemonItemWrapper({ pokemonItem }: PokemonItemWrapperProps) {
 				</button>
 			}
 			imageUrl={pokemonItem.imageUrl}
+			id={pokemonItem.id}
 			name={pokemonItem.name}
 			onClick={onClickFromPokemonItem}
 		/>

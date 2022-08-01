@@ -5,23 +5,28 @@ import * as styled from './pokemon-item.styled';
 export type PokemonItemProps = {
 	itemAction?: ReactNode;
 	imageUrl?: string;
+	id?: number;
 	name?: string;
 	onClick?: () => void;
 };
 
-function PokemonItem({ itemAction, imageUrl, name, onClick }: PokemonItemProps) {
+function PokemonItem({ itemAction, imageUrl, id, name, onClick }: PokemonItemProps) {
 	const itemActionContainer: JSX.Element | null = itemAction ? (
 		<styled.ItemActionContainer>{itemAction}</styled.ItemActionContainer>
 	) : null;
+
+	const pokemonId: JSX.Element | null = id !== undefined ? <span>({id})</span> : null;
 
 	return (
 		<styled.PokemonItem>
 			<styled.PokemonActionArea onClick={onClick}>
 				<styled.PokemonImageContainer>
-					<styled.PokemonImage src={imageUrl} loading='lazy' alt={name} />
+					<styled.PokemonImage draggable='false' src={imageUrl} loading='lazy' alt={name} />
 				</styled.PokemonImageContainer>
 
-				<styled.PokemonName>{name}</styled.PokemonName>
+				<styled.PokemonName>
+					{pokemonId} {name}
+				</styled.PokemonName>
 			</styled.PokemonActionArea>
 
 			{itemActionContainer}
