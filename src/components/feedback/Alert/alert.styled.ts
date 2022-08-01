@@ -12,6 +12,7 @@ export const Alert = styled('p')<AlertProps>(
 		border-radius: 8px;
 		font-weight: bold;
 		background-color: ghostwhite;
+		margin: 0;
 
 		${$severity === 'error' &&
 		css`

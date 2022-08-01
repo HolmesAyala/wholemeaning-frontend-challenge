@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import AlertBase from '../../components/feedback/Alert';
 
 export const Home = styled('main')(
 	() => css`
@@ -27,6 +28,12 @@ export const SearchField = styled('input')(
 		align-self: stretch;
 		width: 512px;
 		margin: 0 auto;
+	`
+);
+
+export const Alert = styled(AlertBase)(
+	() => css`
+		margin-top: 32px;
 	`
 );
 

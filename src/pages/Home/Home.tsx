@@ -2,6 +2,7 @@ import { useEffect, useState, ChangeEvent } from 'react';
 
 import * as styled from './home.styled';
 
+import Alert from '../../components/feedback/Alert';
 import PokemonItemWrapper from './components/PokemonItemWrapper';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -30,7 +31,12 @@ function Home() {
 
 	const pokemonItems = useSelector(selectPokemonItems);
 
-	const { loadData: loadPokemonList, data: pokemonItemsLoaded } = useLoadPokemonList();
+	const {
+		loading: loadingPokemonList,
+		error: errorLoadingPokemonList,
+		loadData: loadPokemonList,
+		data: pokemonItemsLoaded,
+	} = useLoadPokemonList();
 
 	const [pokemonItemsBySearch, setPokemonItemsBySearch] = useState<PokemonItem[]>([]);
 
@@ -63,6 +69,12 @@ function Home() {
 		);
 	};
 
+	const loadingMessage: JSX.Element = <styled.Alert>Cargardo lista de Pokémon...</styled.Alert>;
+
+	const errorMessage: JSX.Element = (
+		<styled.Alert severity='error'>Error al cargar las lista de Pokémon.</styled.Alert>
+	);
+
 	const pokemonItemsToRender: JSX.Element[] = pokemonItemsBySearch.map((pokemonItem) => (
 		<PokemonItemWrapper key={pokemonItem.id} pokemonItem={pokemonItem} />
 	));
@@ -76,7 +88,13 @@ function Home() {
 				onChange={onChangeFromSearchField}
 			/>
 
-			<styled.PokemonList>{pokemonItemsToRender}</styled.PokemonList>
+			{!loadingPokemonList && !errorLoadingPokemonList && (
+				<styled.PokemonList>{pokemonItemsToRender}</styled.PokemonList>
+			)}
+
+			{loadingPokemonList && loadingMessage}
+
+			{errorLoadingPokemonList && errorMessage}
 		</styled.Home>
 	);
 }
