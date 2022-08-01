@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# Wholemeaning frontend challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Proyecto de solución al **Wholemeaning frontend challenge**.
 
-## Available Scripts
+* [URL de la aplicación](https://wholemeaning-frontend-challenge.vercel.app/)
 
-In the project directory, you can run:
+## Requerimientos
+
+### Tecnologías/frameworks
+
+- ✅ React
+- ✅ Typescript
+- ✅ Redux
+
+### Servicios/plataformas
+
+- ✅ Vercel
+- ✅ PokeApi
+- ✅ Github
+
+### Funcionales
+
+- ✅ Visualizar una lista de los primeros 151 Pokémon.
+- ✅ Permitir la búsqueda en la lista de Pokémon por nombre o número.
+- ✅ Ver el detalle de cada Pokémon.
+- ✅ Gestionar una lista de “Listos para el combate” de hasta 6 Pokémon que sea
+visible todo el tiempo (Para más detalles: Ver documento de especificaciones).
+- ✅ Debe ser responsive, la resolución más baja a soportar es 1024x768.
+
+### Adicionales
+
+- ❔Git Workflow: Master-only Flow.
+    - Solo hay un desarrollador, por lo tanto de optó por Master-only Flow en el branch main.
+- ❔Test unitarios: No fue un requerimiento de las especificaciones, sin embargo se podría implementar con `Jest` y `React Testing Library`.
+- ❔CI: No fue un requerimiento de las especificaciones, sin embargo se podría implementar con `GitHub Actions` e integrarlo con Vercel. También se podría explorar con las `Integraciones` de vercel.
+
+## Create React App
+
+Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
+
+## Scripts
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Ejecuta la aplicación en modo de desarrollo ([http://localhost:3000](http://localhost:3000)).
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Ejecuta los test](https://facebook.github.io/create-react-app/docs/running-tests) en modo interactivo.
+
+### `npm run lint`
+
+Ejecuta el linter del proyecto.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Transpila la aplicación para [producción](https://facebook.github.io/create-react-app/docs/deployment) en la carpeta `build`.
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Nota: Una vez que se ejecute `eject`, no se puede revertir!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Extrae toda la configuración establecida por defecto.
