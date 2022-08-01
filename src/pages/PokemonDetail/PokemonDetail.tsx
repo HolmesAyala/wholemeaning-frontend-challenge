@@ -16,6 +16,17 @@ export enum QUERY_PARAMS {
 	ID = 'id',
 }
 
+const STAT_NAME_MAP: { [stat: string]: string | undefined } = {
+	hp: 'Vida',
+	attack: 'Ataque',
+	defense: 'Defensa',
+	'special-attack': 'Ataque especial',
+	'special-defense': 'Defensa especial',
+	speed: 'Velocidad',
+	accuracy: 'Precisión',
+	evasion: 'Evasión',
+};
+
 function PokemonDetail() {
 	const navigate = useNavigate();
 
@@ -90,9 +101,9 @@ function PokemonDetail() {
 			<styled.SectionTitle>Estadísticas base</styled.SectionTitle>
 
 			<BaseStatistics
-				statItems={pokemonDetail.stats.map((stat) => ({
-					name: stat.stat.name,
-					value: stat.base_stat,
+				statItems={pokemonDetail.stats.map((statItem) => ({
+					name: STAT_NAME_MAP[statItem.stat.name] ?? statItem.stat.name,
+					value: statItem.base_stat,
 				}))}
 			/>
 		</styled.PokemonInformation>
