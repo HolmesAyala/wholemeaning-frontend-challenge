@@ -9,6 +9,13 @@ export const Home = styled('main')(
 	`
 );
 
+export const Logo = styled('img')(
+	() => css`
+		max-width: calc(128px + 64px);
+		margin: 0 auto 32px auto;
+	`
+);
+
 export const SearchField = styled('input')(
 	() => css`
 		display: block;
@@ -17,15 +24,18 @@ export const SearchField = styled('input')(
 		position: sticky;
 		top: 0;
 		z-index: 1;
+		align-self: stretch;
+		width: 512px;
+		margin: 0 auto;
 	`
 );
 
 export const PokemonList = styled('ul')(
 	() => css`
-		margin: 16px 0 0 0;
+		margin: 64px 0 0 0;
 		padding: 0;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
-		gap: 16px;
+		grid-template-columns: repeat(auto-fill, minmax(calc(128px), 1fr));
+		gap: 32px;
 	`
 );

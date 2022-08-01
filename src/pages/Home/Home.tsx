@@ -17,6 +17,8 @@ import { useLoadPokemonList } from './hooks/use-load-pokemon-list';
 import { pokemonResultToPokemonItem } from './utils/pokemon-result-to-pokemon-item';
 import { pokemonItemMatchSearch } from './utils/pokemon-item-match-search';
 
+import pokedexLogo from './assets/pokedex-logo.png';
+
 export const MAX_POKEMON_TO_LOAD = 151;
 
 export const PATH = '/home';
@@ -67,6 +69,8 @@ function Home() {
 
 	return (
 		<styled.Home>
+			<styled.Logo src={pokedexLogo} alt='Pokédex' />
+
 			<styled.SearchField
 				placeholder='Buscar pokémon por nombre o número'
 				onChange={onChangeFromSearchField}
