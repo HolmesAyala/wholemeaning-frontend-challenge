@@ -34,6 +34,33 @@ visible todo el tiempo (Para más detalles: Ver documento de especificaciones).
 - ❔Test unitarios: No fue un requerimiento de las especificaciones, sin embargo se podría implementar con `Jest` y `React Testing Library`.
 - ❔CI: No fue un requerimiento de las especificaciones, sin embargo se podría implementar con `GitHub Actions` e integrarlo con Vercel. También se podría explorar con las `Integraciones` de vercel.
 
+### Dependencias de entorno
+
+- Node JS: v16.x
+- npm: v8.x
+
+### Ejecución local
+
+Crear archivo de variables de entorno (**.env**). Ver el archivo de ejemplo (**.env.example**). 
+
+Se puede copiar el ejemplo con:
+
+```bash
+    cp .env.example .env
+```
+
+Instalar dependencias:
+
+```bash
+    npm i
+```
+
+Ejecutar en modo de desarrollo:
+
+```bash
+    npm start
+```
+
 ## Create React App
 
 Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
