@@ -7,6 +7,7 @@ export const BattleReadyPokemonsSidebar = styled('aside')(
 		padding: 32px;
 		display: flex;
 		flex-direction: column;
+		background-color: aliceblue;
 	`
 );
 
