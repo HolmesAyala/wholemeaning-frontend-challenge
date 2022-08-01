@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
 export type ButtonProps = {
-	color: 'default' | 'success' | 'error';
+	$color: 'default' | 'success' | 'error';
 };
 
 export const Button = styled('button')<ButtonProps>(
-	({ color: $themeColor }) => css`
+	({ $color }) => css`
 		padding: 16px;
 		border-radius: 8px;
 		font-size: 1rem;
@@ -21,7 +21,7 @@ export const Button = styled('button')<ButtonProps>(
 			filter: none;
 		}
 
-		${$themeColor === 'success' &&
+		${$color === 'success' &&
 		css`
 			background-color: yellowgreen;
 			color: white;
@@ -31,7 +31,7 @@ export const Button = styled('button')<ButtonProps>(
 			}
 		`}
 
-		${$themeColor === 'error' &&
+		${$color === 'error' &&
 		css`
 			background-color: crimson;
 			color: white;

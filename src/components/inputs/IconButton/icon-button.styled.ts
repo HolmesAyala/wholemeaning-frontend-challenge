@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
 export type IconButtonProps = {
-	color: 'default' | 'success' | 'error';
+	$color: 'default' | 'success' | 'error';
 };
 
 export const IconButton = styled('button')<IconButtonProps>(
-	({ color: $themeColor }) => css`
+	({ $color }) => css`
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
@@ -27,7 +27,7 @@ export const IconButton = styled('button')<IconButtonProps>(
 			filter: none;
 		}
 
-		${$themeColor === 'success' &&
+		${$color === 'success' &&
 		css`
 			background-color: yellowgreen;
 			color: white;
@@ -37,7 +37,7 @@ export const IconButton = styled('button')<IconButtonProps>(
 			}
 		`}
 
-		${$themeColor === 'error' &&
+		${$color === 'error' &&
 		css`
 			background-color: crimson;
 			color: white;
