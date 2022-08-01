@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import * as styled from './pokemon-detail.styled';
 
 import Header from './components/Header';
+import Characteristic from './components/Characteristic';
+import BaseStatistics from './components/BaseStatistics';
 
 import { useLoadPokemonDetail } from './hooks/use-load-pokemon-detail';
 
@@ -46,7 +48,42 @@ function PokemonDetail() {
 
 	if (pokemonId === null) return null;
 
-	const pokemonInformation: JSX.Element | null = pokemonDetail ? <></> : null;
+	const pokemonInformation: JSX.Element | null = pokemonDetail ? (
+		<styled.PokemonInformation>
+			<styled.PokemonImage
+				draggable='false'
+				src={
+					pokemonDetail.sprites.other.dream_world.front_default ??
+					pokemonDetail.sprites.front_default ??
+					undefined
+				}
+			/>
+
+			<styled.SectionTitle>Características</styled.SectionTitle>
+
+			<styled.Characteristics>
+				<Characteristic label='Número' value={pokemonDetail.id} />
+
+				<Characteristic label='Altura' value={`${pokemonDetail.height / 10} m`} />
+
+				<Characteristic label='Nombre' value={pokemonDetail.name} />
+
+				<Characteristic
+					label='Tipo(s)'
+					value={pokemonDetail.types.map((typeItem) => typeItem.type.name).join(', ')}
+				/>
+			</styled.Characteristics>
+
+			<styled.SectionTitle>Estadísticas base</styled.SectionTitle>
+
+			<BaseStatistics
+				statItems={pokemonDetail.stats.map((stat) => ({
+					name: stat.stat.name,
+					value: stat.base_stat,
+				}))}
+			/>
+		</styled.PokemonInformation>
+	) : null;
 
 	return (
 		<styled.PokemonDetail>

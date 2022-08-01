@@ -5,13 +5,16 @@ export type StatItem = {
 	stat: { name: string };
 };
 
+export type TypeItem = {
+	type: {
+		name: string;
+	};
+};
+
 export type GetPokemonDetailData = {
 	id: number;
 	name: string;
-	weight: number;
 	height: number;
-	base_experience: number;
-	order: number;
 	sprites: {
 		front_default: string | null;
 		other: {
@@ -20,6 +23,7 @@ export type GetPokemonDetailData = {
 			};
 		};
 	};
+	types: TypeItem[];
 	stats: StatItem[];
 };
 
