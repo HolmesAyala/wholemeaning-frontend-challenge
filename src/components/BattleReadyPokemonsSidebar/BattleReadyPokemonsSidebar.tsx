@@ -40,9 +40,13 @@ function BattleReadyPokemonsSidebar() {
 		<PokemonItemComponent
 			key={combatPokemonItem.id}
 			itemAction={
-				<button data-item-id={combatPokemonItem.id} onClick={onClickFromRemoveButtonInPokemonItem}>
-					x
-				</button>
+				<styled.RemoveButton
+					color='error'
+					data-item-id={combatPokemonItem.id}
+					onClick={onClickFromRemoveButtonInPokemonItem}
+				>
+					×
+				</styled.RemoveButton>
 			}
 			imageUrl={combatPokemonItem.imageUrl}
 			name={combatPokemonItem.name}

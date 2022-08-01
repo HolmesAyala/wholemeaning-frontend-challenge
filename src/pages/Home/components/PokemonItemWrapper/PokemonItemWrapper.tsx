@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import * as styled from './pokemon-item-wrapper.styled';
+
 import PokemonItemBase from '../../../../components/PokemonItem';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -39,12 +41,13 @@ function PokemonItemWrapper({ pokemonItem }: PokemonItemWrapperProps) {
 	return (
 		<PokemonItemBase
 			itemAction={
-				<button
+				<styled.AddButton
+					color='success'
 					disabled={isPokemonReadyForCombat || isMaxPokemonItemsReached}
 					onClick={() => onAddPokemonItemToBattleReady(pokemonItem)}
 				>
 					+
-				</button>
+				</styled.AddButton>
 			}
 			imageUrl={pokemonItem.imageUrl}
 			id={pokemonItem.id}

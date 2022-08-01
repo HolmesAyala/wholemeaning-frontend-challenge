@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import IconButton from '../../components/inputs/IconButton';
 
 export const BattleReadyPokemonsSidebar = styled('aside')(
 	() => css`
@@ -25,6 +26,13 @@ export const PokemonList = styled('ul')(
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
 		gap: 16px;
+	`
+);
+
+export const RemoveButton = styled(IconButton)(
+	() => css`
+		margin-right: 8px;
+		margin-top: 8px;
 	`
 );
 

@@ -57,6 +57,7 @@ function PokemonDetail() {
 					pokemonDetail.sprites.front_default ??
 					undefined
 				}
+				alt={pokemonDetail.name}
 			/>
 
 			<styled.SectionTitle>Características</styled.SectionTitle>
