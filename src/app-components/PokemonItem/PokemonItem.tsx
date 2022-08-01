@@ -15,7 +15,7 @@ function PokemonItem({ itemAction, imageUrl, id, name, onClick }: PokemonItemPro
 		<styled.ItemActionContainer>{itemAction}</styled.ItemActionContainer>
 	) : null;
 
-	const pokemonId: JSX.Element | null = id !== undefined ? <span>({id})</span> : null;
+	const pokemonId: JSX.Element | null = id !== undefined ? <span>#{id}</span> : null;
 
 	return (
 		<styled.PokemonItem>

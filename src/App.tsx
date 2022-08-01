@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { GlobalStyles } from './styles/global';
 import * as styled from './app.styled';
 
-import BattleReadyPokemonsSidebar from './components/BattleReadyPokemonsSidebar';
+import BattleReadyPokemonsSidebar from './app-components/BattleReadyPokemonsSidebar';
 
 import Home, { PATH as HOME_PATH } from './pages/Home';
 import PokemonDetail, { PATH as POKEMON_DETAIL_PATH } from './pages/PokemonDetail';

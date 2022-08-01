@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import * as styled from './pokemon-item-wrapper.styled';
 
-import PokemonItemBase from '../../../../components/PokemonItem';
+import PokemonItemBase from '../../../../app-components/PokemonItem';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { PokemonItem } from '../../../../store/reducers/pokemons';
