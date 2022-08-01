@@ -1,5 +1,7 @@
 import * as styled from './header.styled';
 
+import Button from '../../../../components/inputs/Button';
+
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	addItem as addPokemonToCombatList,
@@ -12,10 +14,11 @@ import { selectPokemonItems } from '../../../../store/reducers/pokemons';
 import { PATH as HOME_PATH } from '../../../Home';
 
 type HeaderProps = {
+	className?: string;
 	pokemonId: number;
 };
 
-function Header({ pokemonId }: HeaderProps) {
+function Header({ className, pokemonId }: HeaderProps) {
 	const dispatch = useDispatch();
 
 	const pokemonItems = useSelector(selectPokemonItems);
@@ -37,20 +40,24 @@ function Header({ pokemonId }: HeaderProps) {
 	};
 
 	const removeFromCombatListButton: JSX.Element = (
-		<button onClick={onClickFromButtonToRemovePokemonInCombatList}>
+		<Button color='error' onClick={onClickFromButtonToRemovePokemonInCombatList}>
 			Remover de la lista de combate
-		</button>
+		</Button>
 	);
 
 	const addToCombatListButton: JSX.Element = (
-		<button disabled={isMaxPokemonItemsReached} onClick={onClickFromAddToCombatListButton}>
+		<Button
+			color='success'
+			disabled={isMaxPokemonItemsReached}
+			onClick={onClickFromAddToCombatListButton}
+		>
 			Agregar a la lista de combate
-		</button>
+		</Button>
 	);
 
 	return (
-		<styled.Header>
-			<styled.BackLink to={HOME_PATH}>{`<- Lista de pokémon`}</styled.BackLink>
+		<styled.Header className={className}>
+			<styled.BackLink to={HOME_PATH}>{`← Lista de pokémon`}</styled.BackLink>
 
 			{isPokemonReadyForCombat ? removeFromCombatListButton : addToCombatListButton}
 		</styled.Header>

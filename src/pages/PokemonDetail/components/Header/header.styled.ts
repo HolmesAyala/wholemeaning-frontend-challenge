@@ -3,14 +3,23 @@ import { Link, LinkProps } from 'react-router-dom';
 
 export const Header = styled('header')(
 	() => css`
-		display: flex;
+		display: grid;
 		align-items: center;
-		justify-content: space-between;
+		grid-template-columns: repeat(auto-fit, minmax(292px, 1fr));
+		gap: 16px;
 	`
 );
 
 export const BackLink = styled(Link)<LinkProps>(
 	() => css`
 		font-size: 1rem;
+		color: black;
+		text-decoration: none;
+		padding: 16px;
+		font-weight: bold;
+
+		&:hover {
+			background-color: ghostwhite;
+		}
 	`
 );

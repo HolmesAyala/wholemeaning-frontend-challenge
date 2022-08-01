@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as styled from './pokemon-detail.styled';
 
-import Header from './components/Header';
 import Characteristic from './components/Characteristic';
 import BaseStatistics from './components/BaseStatistics';
 
@@ -88,7 +87,7 @@ function PokemonDetail() {
 
 	return (
 		<styled.PokemonDetail>
-			<Header pokemonId={pokemonId} />
+			<styled.Header pokemonId={pokemonId} />
 
 			{pokemonInformation}
 		</styled.PokemonDetail>

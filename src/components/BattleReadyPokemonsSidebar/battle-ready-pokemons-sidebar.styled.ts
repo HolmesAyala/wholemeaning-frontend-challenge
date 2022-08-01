@@ -38,7 +38,7 @@ export const RemoveButton = styled(IconButton)(
 
 export const EmptyListMessage = styled('p')(
 	() => css`
-		font-size: 1rem;
+		font-size: 1.2rem;
 		flex-grow: 1;
 		margin: 0;
 		display: flex;

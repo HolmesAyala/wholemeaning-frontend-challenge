@@ -1,8 +1,17 @@
 import styled, { css } from 'styled-components';
+import HeaderBase from './components/Header';
 
 export const PokemonDetail = styled('main')(
 	() => css`
-		overflow: auto;
+		overflow-y: auto;
+	`
+);
+
+export const Header = styled(HeaderBase)(
+	() => css`
+		position: sticky;
+		top: 0;
+		background-color: white;
 		padding: 32px;
 	`
 );
@@ -12,6 +21,7 @@ export const PokemonInformation = styled('div')(
 		max-width: 512px;
 		margin: auto;
 		margin-top: 32px;
+		padding-bottom: 32px;
 	`
 );
 

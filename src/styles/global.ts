@@ -15,6 +15,5 @@ export const GlobalStyles = createGlobalStyle`
 
   body, button, input {
     font-family: 'Share Tech Mono', monospace;
-    /* letter-spacing: 0.1rem; */
   }
 `;
