@@ -35,7 +35,12 @@ function PokemonDetail() {
 		return pokemonIdParsed;
 	}, [location.search]);
 
-	const { data: pokemonDetail, loadData: loadPokemonDetail } = useLoadPokemonDetail();
+	const {
+		loading: loadingPokemonDetail,
+		error: errorLoadingPokemonDetail,
+		data: pokemonDetail,
+		loadData: loadPokemonDetail,
+	} = useLoadPokemonDetail();
 
 	useEffect(() => {
 		if (pokemonId) {
@@ -46,6 +51,14 @@ function PokemonDetail() {
 	}, [loadPokemonDetail, pokemonId, navigate]);
 
 	if (pokemonId === null) return null;
+
+	const loadingMessage: JSX.Element = (
+		<styled.Alert>Cargando la información del Pokémon...</styled.Alert>
+	);
+
+	const loadingErrorMessage: JSX.Element = (
+		<styled.Alert severity='error'>Error al cargar la información del Pokémon</styled.Alert>
+	);
 
 	const pokemonInformation: JSX.Element | null = pokemonDetail ? (
 		<styled.PokemonInformation>
@@ -89,7 +102,11 @@ function PokemonDetail() {
 		<styled.PokemonDetail>
 			<styled.Header pokemonId={pokemonId} />
 
-			{pokemonInformation}
+			{!loadingPokemonDetail && !errorLoadingPokemonDetail && pokemonInformation}
+
+			{loadingPokemonDetail && loadingMessage}
+
+			{errorLoadingPokemonDetail && loadingErrorMessage}
 		</styled.PokemonDetail>
 	);
 }

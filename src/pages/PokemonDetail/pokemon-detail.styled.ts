@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import HeaderBase from './components/Header';
+import AlertBase from '../../components/feedback/Alert';
 
 export const PokemonDetail = styled('main')(
 	() => css`
@@ -13,6 +14,12 @@ export const Header = styled(HeaderBase)(
 		top: 0;
 		background-color: white;
 		padding: 32px;
+	`
+);
+
+export const Alert = styled(AlertBase)(
+	() => css`
+		margin: 0 32px;
 	`
 );
 
