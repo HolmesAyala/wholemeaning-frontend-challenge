@@ -1,12 +1,20 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
+  html {
+    font-size: 1rem;
+  }
+
   html, body, #root {
     height: 100%;
   }
 
   body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  body, button, input {
+    font-family: 'Share Tech Mono', monospace;
+    /* letter-spacing: 0.1rem; */
   }
 `;

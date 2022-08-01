@@ -16,7 +16,6 @@ export const Title = styled('h2')(
 		font-size: 2rem;
 		text-align: center;
 		text-transform: uppercase;
-		font-family: Arial, Helvetica, sans-serif;
 	`
 );
 
