@@ -62,6 +62,10 @@ function Home() {
 		setPokemonItemsBySearch(pokemonItems);
 	}, [pokemonItems]);
 
+	useEffect(() => {
+		throw new Error('Something wrong');
+	}, []);
+
 	const onChangeFromSearchField = (event: ChangeEvent<HTMLInputElement>) => {
 		const { value: search } = event.target;
 
